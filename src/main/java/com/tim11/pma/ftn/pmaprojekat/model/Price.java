@@ -7,6 +7,8 @@
 package com.tim11.pma.ftn.pmaprojekat.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.tim11.pma.ftn.pmaprojekat.util.JsonDateSerializer;
 
 /** @pdOid 08237c2c-b934-4630-a57a-996b6ba726b7 */
 public class Price implements java.io.Serializable {

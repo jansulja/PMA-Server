@@ -7,6 +7,8 @@
 package com.tim11.pma.ftn.pmaprojekat.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.tim11.pma.ftn.pmaprojekat.util.JsonDateSerializer;
 
 /** @pdOid 4a965aa6-994a-451e-8783-43d5ae038f3b */
 public class Reservation implements java.io.Serializable {
@@ -108,6 +110,7 @@ public class Reservation implements java.io.Serializable {
     *
     * @return endDate 
     */
+
    public java.util.Date getEndDate()
    {
       return endDate;
