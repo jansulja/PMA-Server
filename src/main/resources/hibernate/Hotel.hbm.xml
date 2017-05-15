@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Hibernate XML Mapping File -->
 <!-- Author: Shuky -->
-<!-- Modified: Thursday, May 11, 2017 5:51:59 PM -->
+<!-- Modified: Monday, May 15, 2017 6:59:46 PM -->
 <!DOCTYPE hibernate-mapping PUBLIC
    "-//Hibernate/Hibernate Mapping DTD//EN"
    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
@@ -28,20 +28,26 @@
       <property name="rating" insert="true" update="true" lazy="false" optimistic-lock="true">
          <column name="HOTEL_RATING" sql-type="decimal(2,1)" length="2" precision="1"/>
       </property>
+      <property name="reviews" insert="true" update="true" lazy="false" optimistic-lock="true">
+         <column name="HOTEL_REVIEWS" sql-type="int"/>
+      </property>
+      <property name="imageFilename" insert="true" update="true" lazy="false" optimistic-lock="true">
+         <column name="HOTEL_IMAGE_FILENAME" sql-type="varchar(100)" length="100"/>
+      </property>
       <many-to-one name="address" class="com.tim11.pma.ftn.pmaprojekat.model.Address" outer-join="false" update="true" insert="true">
       	<column name="ADDRESS_ID" sql-type="int" not-null="true" length="0"/>
       </many-to-one>
-      <bag name="amenity" outer-join="false" lazy="true" optimistic-lock="true">
+      <set name="amenity" outer-join="false" lazy="true" optimistic-lock="true">
       	<key on-delete="noaction" unique="false">
       		<column name="HOTEL_ID" sql-type="int" not-null="true" length="0"/>
       	</key>
       	<one-to-many class="com.tim11.pma.ftn.pmaprojekat.model.Amenity"/>
-      </bag>
-      <bag name="room" outer-join="false" lazy="true" optimistic-lock="true">
+      </set>
+      <set name="room" outer-join="false" lazy="true" optimistic-lock="true">
       	<key on-delete="noaction" unique="false">
       		<column name="HOTEL_ID" sql-type="int" not-null="true" length="0"/>
       	</key>
       	<one-to-many class="com.tim11.pma.ftn.pmaprojekat.model.Room"/>
-      </bag>
+      </set>
    </class>
 </hibernate-mapping>

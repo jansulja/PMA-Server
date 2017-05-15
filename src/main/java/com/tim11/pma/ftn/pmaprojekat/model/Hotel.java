@@ -6,35 +6,34 @@
 
 package com.tim11.pma.ftn.pmaprojekat.model;
 
-import javax.persistence.Entity;
+import java.util.*;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
-/** @pdOid e6d4e09e-b469-41f1-92d5-4da4f7e0d0f3 */
+/** @pdOid 11b80e70-b677-460c-b503-d3bf2bf90081 */
 public class Hotel implements java.io.Serializable {
-   /** @pdOid fdc32e8f-e8a2-46e6-ad8c-333dd79e5fe6 */
-   private int hotelId;
-   /** @pdOid 9a284d7e-ff3e-4103-af37-5f2c97f47745 */
+   /** @pdOid b5a4b9d8-936f-42aa-b35c-1f18142c5acd */
+   private long hotelId;
+   /** @pdOid de88a6a3-b01c-4526-aba6-912a73143038 */
    private java.lang.String name;
-   /** @pdOid 4a57ee5e-ce9e-4a0d-a75b-3093b0d9e5e4 */
+   /** @pdOid a14a157d-cc90-49a4-b118-e987a72a75f8 */
    private java.lang.String description;
-   /** @pdOid 7c5b614c-b514-4a6e-97c4-60562ad94564 */
+   /** @pdOid 4898072e-37c8-4e80-bca3-5a67cfcbbf3e */
    private java.lang.String website;
-   /** @pdOid ee78e851-f309-4999-8592-0d5dc4b5889f */
+   /** @pdOid 0540fe46-2e26-4984-ab66-bdf3dfd2dc5e */
    private java.lang.String phone;
-   /** @pdOid 2a169de4-88f0-44ea-ad5f-c30f5c1f93dc */
+   /** @pdOid 63d00521-b444-4f22-b26e-7b2a1a5985cb */
    private int stars;
-   /** @pdOid 8309f74e-6edc-4dd1-8203-54f189c77d07 */
+   /** @pdOid 09a62e4d-443a-4e25-aebd-cb6d13c13b8c */
    private double rating;
+   /** @pdOid e8f7a53b-59c2-47d6-93d7-6c5421342c44 */
+   private int reviews;
+   /** @pdOid ef9265a4-34cb-48f7-9672-f61c80788dd9 */
+   private java.lang.String imageFilename;
    
-   /** @pdRoleInfo migr=no name=Amenity assc=relationship1 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Composition */
-   private java.util.Collection<Amenity> amenity;
-   /** @pdRoleInfo migr=no name=Room assc=relationship2 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Composition */
-   private java.util.Collection<Room> room;
+   /** @pdRoleInfo migr=no name=Amenity assc=relationship1 coll=java.util.Set impl=java.util.HashSet mult=0..* */
+   private java.util.Set<Amenity> amenity;
+   /** @pdRoleInfo migr=no name=Room assc=relationship2 coll=java.util.Set impl=java.util.HashSet mult=0..* */
+   private java.util.Set<Room> room;
    /** @pdRoleInfo migr=no name=Address assc=relationship5 mult=1..1 side=A */
-  
    private Address address;
    
    /**
@@ -48,8 +47,7 @@ public class Hotel implements java.io.Serializable {
    /**
     * @pdGenerated default getter
     */
-   @JsonIgnore
-   public java.util.Collection<Amenity> getAmenity() {
+   public java.util.Set<Amenity> getAmenity() {
       if (amenity == null)
          amenity = new java.util.HashSet<Amenity>();
       return amenity;
@@ -58,7 +56,6 @@ public class Hotel implements java.io.Serializable {
    /**
     * @pdGenerated default iterator getter
     */
-   @JsonIgnore
    public java.util.Iterator getIteratorAmenity() {
       if (amenity == null)
          amenity = new java.util.HashSet<Amenity>();
@@ -69,7 +66,7 @@ public class Hotel implements java.io.Serializable {
     * @pdGenerated default setter
     * @param newAmenity
     */
-   public void setAmenity(java.util.Collection<Amenity> newAmenity) {
+   public void setAmenity(java.util.Set<Amenity> newAmenity) {
       //removeAllAmenity();
       this.amenity = newAmenity;   
    }
@@ -123,7 +120,7 @@ public class Hotel implements java.io.Serializable {
    /**
     * @pdGenerated default getter
     */
-   public java.util.Collection<Room> getRoom() {
+   public java.util.Set<Room> getRoom() {
       if (room == null)
          room = new java.util.HashSet<Room>();
       return room;
@@ -132,7 +129,6 @@ public class Hotel implements java.io.Serializable {
    /**
     * @pdGenerated default iterator getter
     */
-   @JsonIgnore
    public java.util.Iterator getIteratorRoom() {
       if (room == null)
          room = new java.util.HashSet<Room>();
@@ -143,7 +139,7 @@ public class Hotel implements java.io.Serializable {
     * @pdGenerated default setter
     * @param newRoom
     */
-   public void setRoom(java.util.Collection<Room> newRoom) {
+   public void setRoom(java.util.Set<Room> newRoom) {
       //removeAllRoom();
       this.room = newRoom;   
    }
@@ -227,7 +223,7 @@ public class Hotel implements java.io.Serializable {
     *
     * @return hotelId 
     */
-   public int getHotelId()
+   public long getHotelId()
    {
       return hotelId;
    }
@@ -237,7 +233,7 @@ public class Hotel implements java.io.Serializable {
     *
     * @param newHotelId 
     */
-   public void setHotelId(int newHotelId)
+   public void setHotelId(long newHotelId)
    {
       this.hotelId = newHotelId;
    }
@@ -362,7 +358,47 @@ public class Hotel implements java.io.Serializable {
       this.rating = newRating;
    }
    
+   /**
+    * Get value of reviews
+    *
+    * @return reviews 
+    */
+   public int getReviews()
+   {
+      return reviews;
+   }
    
+   /**
+    * Set value of reviews
+    *
+    * @param newReviews 
+    */
+   public void setReviews(int newReviews)
+   {
+      this.reviews = newReviews;
+   }
+   
+   /**
+    * Get value of imageFilename
+    *
+    * @return imageFilename 
+    */
+   public java.lang.String getImageFilename()
+   {
+      return imageFilename;
+   }
+   
+   /**
+    * Set value of imageFilename
+    *
+    * @param newImageFilename 
+    */
+   public void setImageFilename(java.lang.String newImageFilename)
+   {
+      this.imageFilename = newImageFilename;
+   }
+   
+
    
    /* (non-Javadoc)
     * @see java.lang.Object#equals(java.lang.Object)
@@ -401,6 +437,12 @@ public class Hotel implements java.io.Serializable {
       if (Double.doubleToLongBits(this.rating) != Double.doubleToLongBits(cast.getRating()))
                return false;
    
+      if (this.reviews != cast.getReviews())
+         return false;
+   
+      if (this.imageFilename == null ? cast.getImageFilename() != this.imageFilename : !this.imageFilename.equals( cast.getImageFilename()))
+         return false;
+   
       return true;
    }
    
@@ -409,7 +451,7 @@ public class Hotel implements java.io.Serializable {
     */
    public int hashCode() {
       int hashCode = 0;
-      hashCode = 29 * hashCode + (new Integer(hotelId)).hashCode();
+      hashCode = 29 * hashCode + (new Long(hotelId)).hashCode();
       if (this.name != null) 
          hashCode = 29 * hashCode + name.hashCode();
       if (this.description != null) 
@@ -420,6 +462,9 @@ public class Hotel implements java.io.Serializable {
          hashCode = 29 * hashCode + phone.hashCode();
       hashCode = 29 * hashCode + (new Integer(stars)).hashCode();
       hashCode = 29 * hashCode + (new Double(rating)).hashCode();
+      hashCode = 29 * hashCode + (new Integer(reviews)).hashCode();
+      if (this.imageFilename != null) 
+         hashCode = 29 * hashCode + imageFilename.hashCode();
       return hashCode;
    }
    
@@ -437,6 +482,8 @@ public class Hotel implements java.io.Serializable {
       ret.append( "phone='" + phone + "'");
       ret.append( "stars='" + stars + "'");
       ret.append( "rating='" + rating + "'");
+      ret.append( "reviews='" + reviews + "'");
+      ret.append( "imageFilename='" + imageFilename + "'");
       return ret.toString();
    }
 

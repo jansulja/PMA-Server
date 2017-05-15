@@ -1,6 +1,5 @@
-INSERT INTO `sql11174073`.`address`(`address_id`,`address_street`,`address_number`,`address_city`,`address_country`)VALUES(1,'Bulevar Oslobodjenja',26,'Novi Sad','Srbija');
-INSERT INTO `sql11174073`.`address`(`address_id`,`address_street`,`address_number`,`address_city`,`address_country`)VALUES(2,'Narodnog Fronta',78,'Novi Sad','Srbija');
-
+INSERT INTO `sql11174073`.`address`(`address_id`,`address_street`,`address_number`,`address_city`,`address_country`,`address_latitude`,`address_longitude`)VALUES(1,'Bulevar Oslobodjenja',26,'Novi Sad','Srbija',45.2525476,19.8347287);
+INSERT INTO `sql11174073`.`address`(`address_id`,`address_street`,`address_number`,`address_city`,`address_country`,`address_latitude`,`address_longitude`)VALUES(2,'Narodnog Fronta',78,'Novi Sad','Srbija',45.239512, 19.835272);
 
 INSERT INTO `sql11174073`.`hotel`
 (`hotel_id`,
@@ -10,7 +9,9 @@ INSERT INTO `sql11174073`.`hotel`
 `hotel_phone`,
 `hotel_stars`,
 `hotel_rating`,
-`address_id`)
+`address_id`,
+`hotel_reviews`,
+`hotel_image_filename`)
 VALUES
 (1,
 'Plaza',
@@ -19,7 +20,9 @@ VALUES
 '021/6654-568',
 4,
 9.1,
-1);
+1,
+250,
+'hotel1');
 
 INSERT INTO `sql11174073`.`hotel`
 (`hotel_id`,
@@ -29,7 +32,9 @@ INSERT INTO `sql11174073`.`hotel`
 `hotel_phone`,
 `hotel_stars`,
 `hotel_rating`,
-`address_id`)
+`address_id`,
+`hotel_reviews`,
+`hotel_image_filename`)
 VALUES
 (2,
 'NS Hotel',
@@ -38,18 +43,25 @@ VALUES
 '021/4568-123',
 3,
 7.5,
-2);
+2,
+352,
+'hotel2');
 
-INSERT INTO `sql11174073`.`price` (`price_id`, `price_start_date`, `price_end_date`, `price_value`) VALUES ('1', '2001-01-01', '2020-01-01', '53.21');
-INSERT INTO `sql11174073`.`price` (`price_id`, `price_start_date`, `price_end_date`, `price_value`) VALUES ('2', '2001-01-01', '2020-01-01', '68.21');
+INSERT INTO `sql11174073`.`price` (`price_id`, `price_start_date`, `price_end_date`, `price_value`) VALUES (1, '2001-01-01', '2020-01-01', '53.21');
+INSERT INTO `sql11174073`.`price` (`price_id`, `price_start_date`, `price_end_date`, `price_value`) VALUES (2, '2001-01-01', '2020-01-01', '68.21');
 
-INSERT INTO `sql11174073`.`room` (`room_id`, `hotel_id`, `room_name`, `price_id`) VALUES ('1', '1', 'Soba 1', '1');
-INSERT INTO `sql11174073`.`room` (`room_id`, `hotel_id`, `room_name`, `price_id`) VALUES ('2', '1', 'Soba 2', '2');
+INSERT INTO `sql11174073`.`room` (`room_id`, `hotel_id`, `room_name`, `price_id`, `room_count`, `room_available`, `room_description`) VALUES (1, 1, 'Soba 1', 1,6,6,'Description of room');
+INSERT INTO `sql11174073`.`room` (`room_id`, `hotel_id`, `room_name`, `price_id`, `room_count`, `room_available`, `room_description`) VALUES (2, 1, 'Soba 2', 2,9,9,'Description of room');
 
-INSERT INTO `sql11174073`.`amenity` (`amenity_id`, `hotel_id`, `amenity_name`, `amenity_description`) VALUES ('1', '1', 'Free WiFi', 'Free Wireless network');
-INSERT INTO `sql11174073`.`amenity` (`amenity_id`, `hotel_id`, `amenity_name`, `amenity_description`) VALUES ('2', '1', 'Free Parking', 'Free Parking');
+INSERT INTO `sql11174073`.`amenity` (`amenity_id`, `hotel_id`, `amenity_name`, `amenity_description`,`amenity_icon`) VALUES (1, 1, 'Free WiFi', 'Free Wireless network','wifi');
+INSERT INTO `sql11174073`.`amenity` (`amenity_id`, `hotel_id`, `amenity_name`, `amenity_description`,`amenity_icon`) VALUES (2, 1, 'Free Parking', 'Free Parking','parking');
 
-INSERT INTO `sql11174073`.`roomamenity` (`hotel_id`, `room_id`, `ame_hotel_id`, `amenity_id`) VALUES ('1', '1', '1', '1');
+INSERT INTO `sql11174073`.`roomamenity` (`room_id`, `amenity_id`) VALUES (1, 1);
+INSERT INTO `sql11174073`.`roomamenity` (`room_id`, `amenity_id`) VALUES (1, 2);
 
-INSERT INTO `sql11174073`.`reservation` (`reservation_id`, `hotel_id`, `room_id`, `reservation_start_date`, `reservation_end_date`, `reservation_price`, `reservation_firstname`, `reservation_lastname`) VALUES ('1', '1', '1', '2017-05-12', '2017-05-20', '98.21', 'Pera', 'Peric');
+INSERT INTO `sql11174073`.`bed` (`bed_id`, `bed_name`,`bed_icon`) VALUES (1, 'King size','king_size');
+INSERT INTO `sql11174073`.`bed` (`bed_id`, `bed_name`,`bed_icon`) VALUES (2, 'Full extra long','full_extra_long');
+INSERT INTO `sql11174073`.`bed` (`bed_id`, `bed_name`,`bed_icon`) VALUES (3, 'Cot size','cot_size');
 
+INSERT INTO `sql11174073`.`roombed` (`room_bed_id`,`room_id`, `bed_id`,`roombed_count`) VALUES (1, 1, 1, 2);
+INSERT INTO `sql11174073`.`roombed` (`room_bed_id`,`room_id`, `bed_id`,`roombed_count`) VALUES (2, 2, 3, 2);

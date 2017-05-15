@@ -6,25 +6,29 @@
 
 package com.tim11.pma.ftn.pmaprojekat.model;
 
-import javax.persistence.Entity;
+import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-/** @pdOid dff41944-645a-44e3-be15-044c312798db */
+/** @pdOid 9161d04f-b887-42e7-863a-1767a7df3fe4 */
 public class Address implements java.io.Serializable {
-   /** @pdOid b6fe5dda-ae7c-448b-8f65-f5dbc76f77ee */
-   private int addressId;
-   /** @pdOid bef1788c-4f85-48b6-9a1d-abfa684f091c */
-   private java.lang.String street;
-   /** @pdOid eb3c2462-59b0-411b-b770-e4cdb2598b40 */
-   private java.lang.String number;
-   /** @pdOid 8d489398-e9c5-4dc3-b932-e0923515f809 */
-   private java.lang.String city;
-   /** @pdOid 455f0054-276e-486a-ba45-c0565b7b8af1 */
-   private java.lang.String country;
+   /** @pdOid 3be3c382-d667-454b-a140-d09a7480ef83 */
+   public long addressId;
+   /** @pdOid 4ea7241c-5c98-4889-9501-82f87ff2f4bd */
+   public java.lang.String street;
+   /** @pdOid 073e510b-7773-4a4f-88f7-a6a17b9afe2c */
+   public java.lang.String number;
+   /** @pdOid 8a9f15aa-9bc6-4f1e-a5ef-9e92628a20d7 */
+   public java.lang.String city;
+   /** @pdOid 317766f4-de5b-4ff0-ba30-2c1f2ee27120 */
+   public java.lang.String country;
+   /** @pdOid 13945da5-1f96-4971-84f3-0cab9133b625 */
+   public double latitude;
+   /** @pdOid 7a913a6a-a77e-4405-bc0a-42747c429982 */
+   public double longitude;
    
-   /** @pdRoleInfo migr=no name=Hotel assc=relationship5 coll=java.util.Collection impl=java.util.HashSet mult=0..* */
-   private java.util.Collection<Hotel> hotel;
+   /** @pdRoleInfo migr=no name=Hotel assc=relationship5 coll=java.util.Set impl=java.util.HashSet mult=0..* */
+   public java.util.Set<Hotel> hotel;
    
    /**
     * Empty constructor which is required by Hibernate
@@ -38,7 +42,7 @@ public class Address implements java.io.Serializable {
     * @pdGenerated default getter
     */
    @JsonIgnore
-   public java.util.Collection<Hotel> getHotel() {
+   public java.util.Set<Hotel> getHotel() {
       if (hotel == null)
          hotel = new java.util.HashSet<Hotel>();
       return hotel;
@@ -58,7 +62,7 @@ public class Address implements java.io.Serializable {
     * @pdGenerated default setter
     * @param newHotel
     */
-   public void setHotel(java.util.Collection<Hotel> newHotel) {
+   public void setHotel(java.util.Set<Hotel> newHotel) {
       //removeAllHotel();
       this.hotel = newHotel;   
    }
@@ -115,7 +119,7 @@ public class Address implements java.io.Serializable {
     *
     * @return addressId 
     */
-   public int getAddressId()
+   public long getAddressId()
    {
       return addressId;
    }
@@ -125,7 +129,7 @@ public class Address implements java.io.Serializable {
     *
     * @param newAddressId 
     */
-   public void setAddressId(int newAddressId)
+   public void setAddressId(long newAddressId)
    {
       this.addressId = newAddressId;
    }
@@ -211,18 +215,46 @@ public class Address implements java.io.Serializable {
    }
    
    /**
-    * Get value of addressPK.
+    * Get value of latitude
     *
-    * @return addressPK object
+    * @return latitude 
     */
-
+   public double getLatitude()
+   {
+      return latitude;
+   }
    
    /**
-    * Set value of addressPK.
-    * 
-    * @param pk
+    * Set value of latitude
+    *
+    * @param newLatitude 
     */
- 
+   public void setLatitude(double newLatitude)
+   {
+      this.latitude = newLatitude;
+   }
+   
+   /**
+    * Get value of longitude
+    *
+    * @return longitude 
+    */
+   public double getLongitude()
+   {
+      return longitude;
+   }
+   
+   /**
+    * Set value of longitude
+    *
+    * @param newLongitude 
+    */
+   public void setLongitude(double newLongitude)
+   {
+      this.longitude = newLongitude;
+   }
+   
+
    
    /* (non-Javadoc)
     * @see java.lang.Object#equals(java.lang.Object)
@@ -255,6 +287,12 @@ public class Address implements java.io.Serializable {
       if (this.country == null ? cast.getCountry() != this.country : !this.country.equals( cast.getCountry()))
          return false;
    
+      if (Double.doubleToLongBits(this.latitude) != Double.doubleToLongBits(cast.getLatitude()))
+               return false;
+   
+      if (Double.doubleToLongBits(this.longitude) != Double.doubleToLongBits(cast.getLongitude()))
+               return false;
+   
       return true;
    }
    
@@ -263,7 +301,7 @@ public class Address implements java.io.Serializable {
     */
    public int hashCode() {
       int hashCode = 0;
-      hashCode = 29 * hashCode + (new Integer(addressId)).hashCode();
+      hashCode = 29 * hashCode + (new Long(addressId)).hashCode();
       if (this.street != null) 
          hashCode = 29 * hashCode + street.hashCode();
       if (this.number != null) 
@@ -272,6 +310,8 @@ public class Address implements java.io.Serializable {
          hashCode = 29 * hashCode + city.hashCode();
       if (this.country != null) 
          hashCode = 29 * hashCode + country.hashCode();
+      hashCode = 29 * hashCode + (new Double(latitude)).hashCode();
+      hashCode = 29 * hashCode + (new Double(longitude)).hashCode();
       return hashCode;
    }
    
@@ -287,6 +327,8 @@ public class Address implements java.io.Serializable {
       ret.append( "number='" + number + "'");
       ret.append( "city='" + city + "'");
       ret.append( "country='" + country + "'");
+      ret.append( "latitude='" + latitude + "'");
+      ret.append( "longitude='" + longitude + "'");
       return ret.toString();
    }
 

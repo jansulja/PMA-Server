@@ -8,20 +8,21 @@ package com.tim11.pma.ftn.pmaprojekat.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-/** @pdOid 63ff51e7-3c6c-4f7f-b37d-94fa3d1c526e */
+/** @pdOid 2c0fdfe1-cddd-4958-a539-f526eb9d66df */
 public class Amenity implements java.io.Serializable {
-   /** @pdOid 73e7ae41-fd13-4c4c-9040-11f3c57567c0 */
-   public int amenityId;
-   /** @pdOid 1f3f5482-3e26-434a-b917-d982c6f7e25f */
-   public java.lang.String name;
-   /** @pdOid 6e0ac119-efae-4899-bf73-c8322b2a76e9 */
-   public java.lang.String description;
+   /** @pdOid 65fc18a7-f82a-4a1a-8e06-f7875f757987 */
+   private long amenityId;
+   /** @pdOid 41c21651-13fc-481e-b2f1-b7f3022ed9c1 */
+   private java.lang.String name;
+   /** @pdOid 9f710edb-3275-4841-9cb1-2ab4ebf3c8c9 */
+   private java.lang.String description;
+   /** @pdOid 524e0262-3811-426a-8e57-12e542077562 */
+   private java.lang.String icon;
    
-   /** @pdRoleInfo migr=no name=Room assc=relationship4 coll=java.util.Collection impl=java.util.HashSet mult=0..* side=A */
-   @JsonIgnore
-   public java.util.Collection<Room> RoomAmenity;
+   /** @pdRoleInfo migr=no name=Room assc=roomAmenity coll=java.util.Set impl=java.util.HashSet mult=0..* side=A */
+   private java.util.Set<Room> RoomAmenity;
    /** @pdRoleInfo migr=no name=Hotel assc=relationship1 mult=1..1 side=A */
-   public Hotel hotel;
+   private Hotel hotel;
    
    /**
     * Empty constructor which is required by Hibernate
@@ -35,7 +36,7 @@ public class Amenity implements java.io.Serializable {
     * @pdGenerated default getter
     */
    @JsonIgnore
-   public java.util.Collection<Room> getRoomAmenity() {
+   public java.util.Set<Room> getRoomAmenity() {
       if (RoomAmenity == null)
          RoomAmenity = new java.util.HashSet<Room>();
       return RoomAmenity;
@@ -55,7 +56,7 @@ public class Amenity implements java.io.Serializable {
     * @pdGenerated default setter
     * @param newRoomAmenity
     */
-   public void setRoomAmenity(java.util.Collection<Room> newRoomAmenity) {
+   public void setRoomAmenity(java.util.Set<Room> newRoomAmenity) {
       //removeAllRoomAmenity();
       this.RoomAmenity = newRoomAmenity;   
    }
@@ -140,7 +141,7 @@ public class Amenity implements java.io.Serializable {
     *
     * @return amenityId 
     */
-   public int getAmenityId()
+   public long getAmenityId()
    {
       return amenityId;
    }
@@ -150,7 +151,7 @@ public class Amenity implements java.io.Serializable {
     *
     * @param newAmenityId 
     */
-   public void setAmenityId(int newAmenityId)
+   public void setAmenityId(long newAmenityId)
    {
       this.amenityId = newAmenityId;
    }
@@ -195,7 +196,27 @@ public class Amenity implements java.io.Serializable {
       this.description = newDescription;
    }
    
+   /**
+    * Get value of icon
+    *
+    * @return icon 
+    */
+   public java.lang.String getIcon()
+   {
+      return icon;
+   }
    
+   /**
+    * Set value of icon
+    *
+    * @param newIcon 
+    */
+   public void setIcon(java.lang.String newIcon)
+   {
+      this.icon = newIcon;
+   }
+   
+  
    
    /* (non-Javadoc)
     * @see java.lang.Object#equals(java.lang.Object)
@@ -222,6 +243,9 @@ public class Amenity implements java.io.Serializable {
       if (this.description == null ? cast.getDescription() != this.description : !this.description.equals( cast.getDescription()))
          return false;
    
+      if (this.icon == null ? cast.getIcon() != this.icon : !this.icon.equals( cast.getIcon()))
+         return false;
+   
       return true;
    }
    
@@ -230,11 +254,13 @@ public class Amenity implements java.io.Serializable {
     */
    public int hashCode() {
       int hashCode = 0;
-      hashCode = 29 * hashCode + (new Integer(amenityId)).hashCode();
+      hashCode = 29 * hashCode + (new Long(amenityId)).hashCode();
       if (this.name != null) 
          hashCode = 29 * hashCode + name.hashCode();
       if (this.description != null) 
          hashCode = 29 * hashCode + description.hashCode();
+      if (this.icon != null) 
+         hashCode = 29 * hashCode + icon.hashCode();
       return hashCode;
    }
    
@@ -248,6 +274,7 @@ public class Amenity implements java.io.Serializable {
       ret.append( "amenityId='" + amenityId + "'");
       ret.append( "name='" + name + "'");
       ret.append( "description='" + description + "'");
+      ret.append( "icon='" + icon + "'");
       return ret.toString();
    }
 

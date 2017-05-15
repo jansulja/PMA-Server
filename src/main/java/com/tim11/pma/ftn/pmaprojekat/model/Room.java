@@ -8,21 +8,29 @@ package com.tim11.pma.ftn.pmaprojekat.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-/** @pdOid e9a0166c-0a76-4223-84db-1f61de312321 */
+/** @pdOid 6596f8df-cea7-426e-8367-f83dd990cd84 */
 public class Room implements java.io.Serializable {
-   /** @pdOid 39c52b24-65ef-4e06-a71d-c81e79fd0a3a */
-   public int roomId;
-   /** @pdOid a41c3e2a-5373-4d39-a7b2-9401a552109a */
-   public java.lang.String name;
+   /** @pdOid b70d6aae-2848-43b6-a3a4-7c407705e784 */
+   private long roomId;
+   /** @pdOid 3628ffc5-58b6-438a-9637-fd14ebaf2dc8 */
+   private java.lang.String name;
+   /** @pdOid f40f84a6-0bd1-4cb4-9bad-6a26b5815396 */
+   private int count;
+   /** @pdOid ef63af54-b986-4d91-8cbb-a2d2d60cdc20 */
+   private int available;
+   /** @pdOid 44b1a927-1409-4937-9764-7b80479b9b85 */
+   private java.lang.String description;
    
-   /** @pdRoleInfo migr=no name=Amenity assc=relationship4 coll=java.util.Collection impl=java.util.HashSet mult=0..* */
-   public java.util.Collection<Amenity> RoomAmenity;
-   /** @pdRoleInfo migr=no name=Reservation assc=relationship6 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Composition */
-   public java.util.Collection<Reservation> reservation;
+   /** @pdRoleInfo migr=no name=Bed assc=roomBed coll=java.util.Set impl=java.util.HashSet mult=0..* */
+   private java.util.Set<Bed> beds;
+   /** @pdRoleInfo migr=no name=Amenity assc=roomAmenity coll=java.util.Set impl=java.util.HashSet mult=0..* */
+   private java.util.Set<Amenity> RoomAmenity;
+   /** @pdRoleInfo migr=no name=Reservation assc=relationship6 coll=java.util.Set impl=java.util.HashSet mult=0..* */
+   private java.util.Set<Reservation> reservation;
    /** @pdRoleInfo migr=no name=Hotel assc=relationship2 mult=1..1 side=A */
-   public Hotel hotel;
+   private Hotel hotel;
    /** @pdRoleInfo migr=no name=Price assc=relationship3 mult=1..1 side=A */
-   public Price price;
+   private Price price;
    
    /**
     * Empty constructor which is required by Hibernate
@@ -35,7 +43,80 @@ public class Room implements java.io.Serializable {
    /**
     * @pdGenerated default getter
     */
-   public java.util.Collection<Amenity> getRoomAmenity() {
+   public java.util.Set<Bed> getBeds() {
+      if (beds == null)
+         beds = new java.util.HashSet<Bed>();
+      return beds;
+   }
+   
+   /**
+    * @pdGenerated default iterator getter
+    */
+   public java.util.Iterator getIteratorBeds() {
+      if (beds == null)
+         beds = new java.util.HashSet<Bed>();
+      return beds.iterator();
+   }
+   
+   /** 
+    * @pdGenerated default setter
+    * @param newBeds
+    */
+   public void setBeds(java.util.Set<Bed> newBeds) {
+      //removeAllBeds();
+      this.beds = newBeds;   
+   }
+   
+   /** 
+    * @pdGenerated default add
+    * @param newBed
+    */
+   public void addBeds(Bed newBed) {
+      if (newBed == null)
+         return;
+      if (this.beds == null)
+         this.beds = new java.util.HashSet<Bed>();
+      if (!this.beds.contains(newBed))
+      {
+         this.beds.add(newBed);
+         newBed.addRooms(this);
+      }
+   }
+   
+   /** 
+    * @pdGenerated default remove
+    * @param oldBed
+    */
+   public void removeBeds(Bed oldBed) {
+      if (oldBed == null)
+         return;
+      if (this.beds != null)
+         if (this.beds.contains(oldBed))
+         {
+            this.beds.remove(oldBed);
+            oldBed.removeRooms(this);
+         }
+   }
+   
+   /**
+    * @pdGenerated default removeAll
+    */
+   public void removeAllBeds() {
+      if (beds != null)
+      {
+         Bed oldBed;
+         for (java.util.Iterator iter = getIteratorBeds(); iter.hasNext();)
+         {
+            oldBed = (Bed)iter.next();
+            iter.remove();
+            oldBed.removeRooms(this);
+         }
+      }
+   }
+   /**
+    * @pdGenerated default getter
+    */
+   public java.util.Set<Amenity> getRoomAmenity() {
       if (RoomAmenity == null)
          RoomAmenity = new java.util.HashSet<Amenity>();
       return RoomAmenity;
@@ -44,7 +125,6 @@ public class Room implements java.io.Serializable {
    /**
     * @pdGenerated default iterator getter
     */
-   @JsonIgnore
    public java.util.Iterator getIteratorRoomAmenity() {
       if (RoomAmenity == null)
          RoomAmenity = new java.util.HashSet<Amenity>();
@@ -55,7 +135,7 @@ public class Room implements java.io.Serializable {
     * @pdGenerated default setter
     * @param newRoomAmenity
     */
-   public void setRoomAmenity(java.util.Collection<Amenity> newRoomAmenity) {
+   public void setRoomAmenity(java.util.Set<Amenity> newRoomAmenity) {
       //removeAllRoomAmenity();
       this.RoomAmenity = newRoomAmenity;   
    }
@@ -109,7 +189,8 @@ public class Room implements java.io.Serializable {
    /**
     * @pdGenerated default getter
     */
-   public java.util.Collection<Reservation> getReservation() {
+   @JsonIgnore
+   public java.util.Set<Reservation> getReservation() {
       if (reservation == null)
          reservation = new java.util.HashSet<Reservation>();
       return reservation;
@@ -129,7 +210,7 @@ public class Room implements java.io.Serializable {
     * @pdGenerated default setter
     * @param newReservation
     */
-   public void setReservation(java.util.Collection<Reservation> newReservation) {
+   public void setReservation(java.util.Set<Reservation> newReservation) {
       //removeAllReservation();
       this.reservation = newReservation;   
    }
@@ -241,7 +322,7 @@ public class Room implements java.io.Serializable {
     *
     * @return roomId 
     */
-   public int getRoomId()
+   public long getRoomId()
    {
       return roomId;
    }
@@ -251,7 +332,7 @@ public class Room implements java.io.Serializable {
     *
     * @param newRoomId 
     */
-   public void setRoomId(int newRoomId)
+   public void setRoomId(long newRoomId)
    {
       this.roomId = newRoomId;
    }
@@ -276,7 +357,67 @@ public class Room implements java.io.Serializable {
       this.name = newName;
    }
    
-  
+   /**
+    * Get value of count
+    *
+    * @return count 
+    */
+   public int getCount()
+   {
+      return count;
+   }
+   
+   /**
+    * Set value of count
+    *
+    * @param newCount 
+    */
+   public void setCount(int newCount)
+   {
+      this.count = newCount;
+   }
+   
+   /**
+    * Get value of available
+    *
+    * @return available 
+    */
+   public int getAvailable()
+   {
+      return available;
+   }
+   
+   /**
+    * Set value of available
+    *
+    * @param newAvailable 
+    */
+   public void setAvailable(int newAvailable)
+   {
+      this.available = newAvailable;
+   }
+   
+   /**
+    * Get value of description
+    *
+    * @return description 
+    */
+   public java.lang.String getDescription()
+   {
+      return description;
+   }
+   
+   /**
+    * Set value of description
+    *
+    * @param newDescription 
+    */
+   public void setDescription(java.lang.String newDescription)
+   {
+      this.description = newDescription;
+   }
+   
+
    
    /* (non-Javadoc)
     * @see java.lang.Object#equals(java.lang.Object)
@@ -300,6 +441,15 @@ public class Room implements java.io.Serializable {
       if (this.name == null ? cast.getName() != this.name : !this.name.equals( cast.getName()))
          return false;
    
+      if (this.count != cast.getCount())
+         return false;
+   
+      if (this.available != cast.getAvailable())
+         return false;
+   
+      if (this.description == null ? cast.getDescription() != this.description : !this.description.equals( cast.getDescription()))
+         return false;
+   
       return true;
    }
    
@@ -308,9 +458,13 @@ public class Room implements java.io.Serializable {
     */
    public int hashCode() {
       int hashCode = 0;
-      hashCode = 29 * hashCode + (new Integer(roomId)).hashCode();
+      hashCode = 29 * hashCode + (new Long(roomId)).hashCode();
       if (this.name != null) 
          hashCode = 29 * hashCode + name.hashCode();
+      hashCode = 29 * hashCode + (new Integer(count)).hashCode();
+      hashCode = 29 * hashCode + (new Integer(available)).hashCode();
+      if (this.description != null) 
+         hashCode = 29 * hashCode + description.hashCode();
       return hashCode;
    }
    
@@ -323,6 +477,9 @@ public class Room implements java.io.Serializable {
       ret.append( "com.tim11.pma.ftn.pmaprojekat.model.Room: " );
       ret.append( "roomId='" + roomId + "'");
       ret.append( "name='" + name + "'");
+      ret.append( "count='" + count + "'");
+      ret.append( "available='" + available + "'");
+      ret.append( "description='" + description + "'");
       return ret.toString();
    }
 

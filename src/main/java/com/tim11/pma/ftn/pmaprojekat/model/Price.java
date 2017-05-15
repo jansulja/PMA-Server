@@ -6,23 +6,23 @@
 
 package com.tim11.pma.ftn.pmaprojekat.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.tim11.pma.ftn.pmaprojekat.util.JsonDateSerializer;
+import java.util.*;
 
-/** @pdOid 08237c2c-b934-4630-a57a-996b6ba726b7 */
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+/** @pdOid 28b4b9ce-7300-404d-94ec-a0bbe67e8dec */
 public class Price implements java.io.Serializable {
-   /** @pdOid 61adcf9e-e8d3-435a-9d77-66816959497e */
-   public int priceId;
-   /** @pdOid c55f6393-0c82-44d8-a806-c3c74327cc0d */
-   public java.util.Date startDate;
-   /** @pdOid b910c9af-d4e4-4652-8d9f-57564a8dafb2 */
-   public java.util.Date endDate;
-   /** @pdOid f8460bd6-c615-4777-9144-9ad2caaf04c9 */
-   public double value;
+   /** @pdOid ddf3fd9f-7eb4-4c50-840a-22d0e2a8d754 */
+   private long priceId;
+   /** @pdOid 86c8ab67-d526-4deb-824f-e9b884a74536 */
+   private java.util.Date startDate;
+   /** @pdOid bf7b5169-9155-4691-9479-ee5c67ac1177 */
+   private java.util.Date endDate;
+   /** @pdOid 383be0f3-5214-4c81-83f0-b7811ad1eb74 */
+   private double value;
    
-   /** @pdRoleInfo migr=no name=Room assc=relationship3 coll=java.util.Collection impl=java.util.HashSet mult=0..* */
-   public java.util.Collection<Room> room;
+   /** @pdRoleInfo migr=no name=Room assc=relationship3 coll=java.util.Set impl=java.util.HashSet mult=0..* */
+   private java.util.Set<Room> room;
    
    /**
     * Empty constructor which is required by Hibernate
@@ -36,7 +36,7 @@ public class Price implements java.io.Serializable {
     * @pdGenerated default getter
     */
    @JsonIgnore
-   public java.util.Collection<Room> getRoom() {
+   public java.util.Set<Room> getRoom() {
       if (room == null)
          room = new java.util.HashSet<Room>();
       return room;
@@ -56,7 +56,7 @@ public class Price implements java.io.Serializable {
     * @pdGenerated default setter
     * @param newRoom
     */
-   public void setRoom(java.util.Collection<Room> newRoom) {
+   public void setRoom(java.util.Set<Room> newRoom) {
       //removeAllRoom();
       this.room = newRoom;   
    }
@@ -113,7 +113,7 @@ public class Price implements java.io.Serializable {
     *
     * @return priceId 
     */
-   public int getPriceId()
+   public long getPriceId()
    {
       return priceId;
    }
@@ -123,7 +123,7 @@ public class Price implements java.io.Serializable {
     *
     * @param newPriceId 
     */
-   public void setPriceId(int newPriceId)
+   public void setPriceId(long newPriceId)
    {
       this.priceId = newPriceId;
    }
@@ -188,14 +188,14 @@ public class Price implements java.io.Serializable {
       this.value = newValue;
    }
    
-  
 
+   
    /* (non-Javadoc)
     * @see java.lang.Object#hashCode()
     */
    public int hashCode() {
       int hashCode = 0;
-      hashCode = 29 * hashCode + (new Integer(priceId)).hashCode();
+      hashCode = 29 * hashCode + (new Long(priceId)).hashCode();
       if (this.startDate != null) 
          hashCode = 29 * hashCode + startDate.hashCode();
       if (this.endDate != null) 

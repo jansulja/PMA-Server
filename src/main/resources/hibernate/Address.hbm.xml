@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Hibernate XML Mapping File -->
 <!-- Author: Shuky -->
-<!-- Modified: Thursday, May 11, 2017 5:51:59 PM -->
+<!-- Modified: Monday, May 15, 2017 6:59:46 PM -->
 <!DOCTYPE hibernate-mapping PUBLIC
    "-//Hibernate/Hibernate Mapping DTD//EN"
    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
@@ -22,11 +22,17 @@
       <property name="country" insert="true" update="true" lazy="false" optimistic-lock="true">
          <column name="ADDRESS_COUNTRY" sql-type="varchar(50)" length="50"/>
       </property>
-      <bag name="hotel" outer-join="false" lazy="true" optimistic-lock="true">
+      <property name="latitude" insert="true" update="true" lazy="false" optimistic-lock="true">
+         <column name="ADDRESS_LATITUDE" sql-type="decimal(10,6)" length="10" precision="6"/>
+      </property>
+      <property name="longitude" insert="true" update="true" lazy="false" optimistic-lock="true">
+         <column name="ADDRESS_LONGITUDE" sql-type="decimal(10,6)" length="10" precision="6"/>
+      </property>
+      <set name="hotel" outer-join="false" lazy="true" optimistic-lock="true">
       	<key>
       		<column name="ADDRESS_ID" sql-type="int" not-null="true" length="0"/>
       	</key>
       	<one-to-many class="com.tim11.pma.ftn.pmaprojekat.model.Hotel"/>
-      </bag>
+      </set>
    </class>
 </hibernate-mapping>
