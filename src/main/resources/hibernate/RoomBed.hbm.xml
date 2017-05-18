@@ -8,9 +8,19 @@
 <hibernate-mapping package="com.tim11.pma.ftn.pmaprojekat.model" auto-import="true">
    <class name="RoomBed" table="ROOMBED" mutable="true" dynamic-update="false" dynamic-insert="false" select-before-update="false" lazy="true" abstract="false">
       <!-- You have to define primary identifier -->
-      <id name="roomBedId"/>
+      <id name="roomBedId">
+      	<column name="ROOMBED_ID" sql-type="int" not-null="true"/>
+      </id>
       <property name="count" insert="true" update="true" lazy="false" optimistic-lock="true">
          <column name="ROOMBED_COUNT" sql-type="int"/>
       </property>
+      <many-to-one name="bed" class="com.tim11.pma.ftn.pmaprojekat.model.Bed" outer-join="false" update="true" insert="true">
+      	<column name="BED_ID" sql-type="int" not-null="true" length="0"/>
+      </many-to-one>
+      
+      <many-to-one name="room" class="com.tim11.pma.ftn.pmaprojekat.model.Room" outer-join="false" update="true" insert="true">
+      	<column name="ROOM_ID" sql-type="int" not-null="true" length="0"/>
+      </many-to-one>
+      
    </class>
 </hibernate-mapping>

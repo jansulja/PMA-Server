@@ -6,9 +6,11 @@
 
 package com.tim11.pma.ftn.pmaprojekat.model;
 
-import java.util.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /** @pdOid 2321ee32-db8b-46d2-8c7a-a8803f1fac0e */
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class RoomBed implements java.io.Serializable {
    /** @pdOid faf0ccbc-aaaa-4ecf-9375-003bb5773efe */
    private int count;
@@ -27,7 +29,7 @@ public class RoomBed implements java.io.Serializable {
 public void setRoomBedId(int roomBedId) {
 	this.roomBedId = roomBedId;
 }
-
+@JsonIgnore
 public Room getRoom() {
 	return room;
 }

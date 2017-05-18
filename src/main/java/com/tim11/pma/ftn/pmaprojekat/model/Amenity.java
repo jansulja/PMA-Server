@@ -7,8 +7,10 @@
 package com.tim11.pma.ftn.pmaprojekat.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /** @pdOid 2c0fdfe1-cddd-4958-a539-f526eb9d66df */
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Amenity implements java.io.Serializable {
    /** @pdOid 65fc18a7-f82a-4a1a-8e06-f7875f757987 */
    private long amenityId;

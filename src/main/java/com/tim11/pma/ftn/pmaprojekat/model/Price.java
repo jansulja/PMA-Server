@@ -9,8 +9,10 @@ package com.tim11.pma.ftn.pmaprojekat.model;
 import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /** @pdOid 28b4b9ce-7300-404d-94ec-a0bbe67e8dec */
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Price implements java.io.Serializable {
    /** @pdOid ddf3fd9f-7eb4-4c50-840a-22d0e2a8d754 */
    private long priceId;

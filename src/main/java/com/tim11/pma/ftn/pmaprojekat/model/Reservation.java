@@ -9,8 +9,11 @@ package com.tim11.pma.ftn.pmaprojekat.model;
 import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 /** @pdOid 4d3be5e2-2302-41f5-8665-3dfbf0e6870b */
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Reservation implements java.io.Serializable {
    /** @pdOid 0b9dbee7-166f-4e41-8361-b2420ed4b778 */
    private long reservationId;

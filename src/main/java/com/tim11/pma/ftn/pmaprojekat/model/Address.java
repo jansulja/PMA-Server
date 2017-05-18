@@ -6,11 +6,11 @@
 
 package com.tim11.pma.ftn.pmaprojekat.model;
 
-import java.util.*;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /** @pdOid 9161d04f-b887-42e7-863a-1767a7df3fe4 */
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Address implements java.io.Serializable {
    /** @pdOid 3be3c382-d667-454b-a140-d09a7480ef83 */
    public long addressId;

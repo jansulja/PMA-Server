@@ -6,9 +6,11 @@
 
 package com.tim11.pma.ftn.pmaprojekat.model;
 
-import java.util.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /** @pdOid 11b80e70-b677-460c-b503-d3bf2bf90081 */
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Hotel implements java.io.Serializable {
    /** @pdOid b5a4b9d8-936f-42aa-b35c-1f18142c5acd */
    private long hotelId;
@@ -56,6 +58,7 @@ public class Hotel implements java.io.Serializable {
    /**
     * @pdGenerated default iterator getter
     */
+   @JsonIgnore
    public java.util.Iterator getIteratorAmenity() {
       if (amenity == null)
          amenity = new java.util.HashSet<Amenity>();
@@ -129,6 +132,7 @@ public class Hotel implements java.io.Serializable {
    /**
     * @pdGenerated default iterator getter
     */
+   @JsonIgnore
    public java.util.Iterator getIteratorRoom() {
       if (room == null)
          room = new java.util.HashSet<Room>();

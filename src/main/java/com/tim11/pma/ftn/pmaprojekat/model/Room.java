@@ -7,8 +7,10 @@
 package com.tim11.pma.ftn.pmaprojekat.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /** @pdOid 6596f8df-cea7-426e-8367-f83dd990cd84 */
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Room implements java.io.Serializable {
    /** @pdOid b70d6aae-2848-43b6-a3a4-7c407705e784 */
    private long roomId;
@@ -22,7 +24,7 @@ public class Room implements java.io.Serializable {
    private java.lang.String description;
    
    /** @pdRoleInfo migr=no name=Bed assc=roomBed coll=java.util.Set impl=java.util.HashSet mult=0..* */
-   private java.util.Set<Bed> beds;
+   private java.util.Set<RoomBed> beds;
    /** @pdRoleInfo migr=no name=Amenity assc=roomAmenity coll=java.util.Set impl=java.util.HashSet mult=0..* */
    private java.util.Set<Amenity> RoomAmenity;
    /** @pdRoleInfo migr=no name=Reservation assc=relationship6 coll=java.util.Set impl=java.util.HashSet mult=0..* */
@@ -43,18 +45,19 @@ public class Room implements java.io.Serializable {
    /**
     * @pdGenerated default getter
     */
-   public java.util.Set<Bed> getBeds() {
+   public java.util.Set<RoomBed> getBeds() {
       if (beds == null)
-         beds = new java.util.HashSet<Bed>();
+         beds = new java.util.HashSet<RoomBed>();
       return beds;
    }
    
    /**
     * @pdGenerated default iterator getter
     */
+   @JsonIgnore
    public java.util.Iterator getIteratorBeds() {
       if (beds == null)
-         beds = new java.util.HashSet<Bed>();
+         beds = new java.util.HashSet<RoomBed>();
       return beds.iterator();
    }
    
@@ -62,7 +65,7 @@ public class Room implements java.io.Serializable {
     * @pdGenerated default setter
     * @param newBeds
     */
-   public void setBeds(java.util.Set<Bed> newBeds) {
+   public void setBeds(java.util.Set<RoomBed> newBeds) {
       //removeAllBeds();
       this.beds = newBeds;   
    }
@@ -71,17 +74,17 @@ public class Room implements java.io.Serializable {
     * @pdGenerated default add
     * @param newBed
     */
-   public void addBeds(Bed newBed) {
-      if (newBed == null)
-         return;
-      if (this.beds == null)
-         this.beds = new java.util.HashSet<Bed>();
-      if (!this.beds.contains(newBed))
-      {
-         this.beds.add(newBed);
-         newBed.addRooms(this);
-      }
-   }
+//   public void addBeds(RoomBed newBed) {
+//      if (newBed == null)
+//         return;
+//      if (this.beds == null)
+//         this.beds = new java.util.HashSet<RoomBed>();
+//      if (!this.beds.contains(newBed))
+//      {
+//         this.beds.add(newBed);
+//         newBed.addRooms(this);
+//      }
+//   }
    
    /** 
     * @pdGenerated default remove
@@ -125,6 +128,7 @@ public class Room implements java.io.Serializable {
    /**
     * @pdGenerated default iterator getter
     */
+   @JsonIgnore
    public java.util.Iterator getIteratorRoomAmenity() {
       if (RoomAmenity == null)
          RoomAmenity = new java.util.HashSet<Amenity>();

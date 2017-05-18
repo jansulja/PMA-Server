@@ -9,8 +9,10 @@ package com.tim11.pma.ftn.pmaprojekat.model;
 import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /** @pdOid 5eb97ccc-9e45-46a3-ae93-825cdffd5621 */
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Bed implements java.io.Serializable {
    /** @pdOid 70e946db-67cc-4393-9710-ccc043d05fb2 */
    private long bedId;
@@ -20,7 +22,7 @@ public class Bed implements java.io.Serializable {
    private java.lang.String icon;
    
    /** @pdRoleInfo migr=no name=Room assc=roomBed coll=java.util.Set impl=java.util.HashSet mult=0..* side=A */
-   public java.util.Set<Room> rooms;
+   public java.util.Set<RoomBed> rooms;
    
    /**
     * Empty constructor which is required by Hibernate
@@ -34,9 +36,9 @@ public class Bed implements java.io.Serializable {
     * @pdGenerated default getter
     */
    @JsonIgnore
-   public java.util.Set<Room> getRooms() {
+   public java.util.Set<RoomBed> getRooms() {
       if (rooms == null)
-         rooms = new java.util.HashSet<Room>();
+         rooms = new java.util.HashSet<RoomBed>();
       return rooms;
    }
    
@@ -46,7 +48,7 @@ public class Bed implements java.io.Serializable {
    @JsonIgnore
    public java.util.Iterator getIteratorRooms() {
       if (rooms == null)
-         rooms = new java.util.HashSet<Room>();
+         rooms = new java.util.HashSet<RoomBed>();
       return rooms.iterator();
    }
    
@@ -54,7 +56,7 @@ public class Bed implements java.io.Serializable {
     * @pdGenerated default setter
     * @param newRooms
     */
-   public void setRooms(java.util.Set<Room> newRooms) {
+   public void setRooms(java.util.Set<RoomBed> newRooms) {
       //removeAllRooms();
       this.rooms = newRooms;   
    }
@@ -63,17 +65,17 @@ public class Bed implements java.io.Serializable {
     * @pdGenerated default add
     * @param newRoom
     */
-   public void addRooms(Room newRoom) {
-      if (newRoom == null)
-         return;
-      if (this.rooms == null)
-         this.rooms = new java.util.HashSet<Room>();
-      if (!this.rooms.contains(newRoom))
-      {
-         this.rooms.add(newRoom);
-         newRoom.addBeds(this);
-      }
-   }
+//   public void addRooms(RoomBed newRoom) {
+//      if (newRoom == null)
+//         return;
+//      if (this.rooms == null)
+//         this.rooms = new java.util.HashSet<RoomBed>();
+//      if (!this.rooms.contains(newRoom))
+//      {
+//         this.rooms.add(newRoom);
+//         newRoom.addBeds(this);
+//      }
+//   }
    
    /** 
     * @pdGenerated default remove
