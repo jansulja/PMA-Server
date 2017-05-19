@@ -1,0 +1,12 @@
+{"properties": [
+  {
+    "name": "fcm.url",
+    "type": "java.lang.String",
+    "description": "A description for 'fcm.url'"
+  },
+  {
+    "name": "fcm.api-key",
+    "type": "java.lang.String",
+    "description": "A description for 'fcm.api-key'"
+  }
+]}

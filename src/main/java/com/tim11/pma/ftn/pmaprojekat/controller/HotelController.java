@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tim11.pma.ftn.pmaprojekat.firebase.service.FcmService;
 import com.tim11.pma.ftn.pmaprojekat.model.Hotel;
 import com.tim11.pma.ftn.pmaprojekat.service.HotelService;
 import com.tim11.pma.ftn.pmaprojekat.viewmodel.SearchViewModel;
@@ -19,6 +20,9 @@ public class HotelController {
 
 	@Autowired
 	HotelService hotelService;
+	
+	@Autowired
+	FcmService fcmService;
 	
 	@GetMapping
 	public List<Hotel> list(){
@@ -34,5 +38,12 @@ public class HotelController {
 		return results;
 		
 	}
+	
+//	@RequestMapping(path = "/fcm", method = RequestMethod.GET)
+//	public void fcmTest(){
+//		
+//		fcmService.sendPushMessage("this is message from spring boot server..");
+//		
+//	}
 	
 }
