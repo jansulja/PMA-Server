@@ -26,7 +26,7 @@ public class HotelController {
 	
 	@GetMapping
 	public List<Hotel> list(){
-		
+		System.out.println("Get hotel list endpoint called!");
 		return hotelService.findAll();
 		
 	}
