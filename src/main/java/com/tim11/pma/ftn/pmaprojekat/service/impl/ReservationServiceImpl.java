@@ -21,6 +21,12 @@ public class ReservationServiceImpl implements ReservationService {
 		return reservationRepository.save(reservation);
 		
 	}
+
+	@Override
+	public List<Reservation> getReservations(String email) {
+
+		return reservationRepository.findByEmail(email);
+	}
 	
 	
 }

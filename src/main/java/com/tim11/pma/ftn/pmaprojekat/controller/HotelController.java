@@ -39,11 +39,11 @@ public class HotelController {
 		
 	}
 	
-//	@RequestMapping(path = "/fcm", method = RequestMethod.GET)
-//	public void fcmTest(){
-//		
-//		fcmService.sendPushMessage("this is message from spring boot server..");
-//		
-//	}
+	@RequestMapping(path = "/fcm", method = RequestMethod.GET)
+	public void fcmTest(){
+		
+		fcmService.sendPushMessage("this is message from spring boot server..");
+		
+	}
 	
 }
