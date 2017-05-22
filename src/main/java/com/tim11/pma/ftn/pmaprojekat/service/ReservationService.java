@@ -8,5 +8,7 @@ public interface ReservationService {
 
 	public Reservation create(Reservation reservation);
 
-	public List<Reservation> getReservations(int userId);
+	public List<Reservation> getReservationsForUser(int userId);
+
+	public List<Reservation> getReservationsForFbProfile(String id);
 }
