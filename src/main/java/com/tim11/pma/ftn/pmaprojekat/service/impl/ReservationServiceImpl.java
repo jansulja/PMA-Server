@@ -2,6 +2,8 @@ package com.tim11.pma.ftn.pmaprojekat.service.impl;
 
 import java.util.List;
 
+import com.tim11.pma.ftn.pmaprojekat.model.User;
+import com.tim11.pma.ftn.pmaprojekat.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,11 +17,19 @@ public class ReservationServiceImpl implements ReservationService {
 	@Autowired
 	private ReservationRepository reservationRepository;
 
+	@Autowired
+	UserService userService;
+
 	@Override
 	public Reservation create(Reservation reservation) {
-		//TODO: Need to
+		//TODO: Probably not to save user here, but maybe yes
+		User user = null;
+		if ((user = userService.findUserByFbProfileId(reservation.getUser().getFbUser().getFbProfileId())) == null) {
+			userService.save(reservation.getUser());
+		} else {
+			reservation.setUser(user);
+		}
 		return reservationRepository.save(reservation);
-		
 	}
 
 	@Override

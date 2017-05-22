@@ -13,7 +13,7 @@ public class FBUser implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String fbProfileId;
 
     @Column(nullable = false)

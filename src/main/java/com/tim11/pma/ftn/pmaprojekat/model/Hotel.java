@@ -45,7 +45,7 @@ public class Hotel implements Serializable {
    @ManyToMany(mappedBy = "hotels")
    private Set<Amenity> amenities;
 
-   @OneToMany(mappedBy = "hotel")
+   @OneToMany(mappedBy = "hotel", cascade = CascadeType.PERSIST)
    private Set<Review> reviews;
 
    @OneToMany(mappedBy = "hotel")

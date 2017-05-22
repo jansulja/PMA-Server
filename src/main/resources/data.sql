@@ -2,10 +2,10 @@ INSERT INTO `address`(`id`,`street`,`number`,`city`,`country`,`latitude`,`longit
 INSERT INTO `address`(`id`,`street`,`number`,`city`,`country`,`latitude`,`longitude`)VALUES(2,'Narodnog Fronta',78,'Novi Sad','Srbija',45.239512, 19.835272);
 
 INSERT INTO `hotel`(`id`,`name`,`description`,`website`,`phone`,`stars`,`rating`,`address_id`,`number_of_reviews`,`image_filename`)
-VALUES(1,'Plaza','Opis hotela Plaza','www.plaza.com','021/6654-568',4,9.1,1,250,'hotel1');
+VALUES(1,'Plaza','Opis hotela Plaza','www.plaza.com','021/6654-568',4,9.1,1,0,'hotel1');
 
 INSERT INTO `hotel`(`id`,`name`,`description`,`website`,`phone`,`stars`,`rating`,`address_id`,`number_of_reviews`,`image_filename`)
-VALUES(2,'NS Hotel','Opis hotela NS Hotel','www.nshotel.com','021/4568-123',3,7.5,2,352,'hotel2');
+VALUES(2,'NS Hotel','Opis hotela NS Hotel','www.nshotel.com','021/4568-123',3,7.5,2,0,'hotel2');
 
 INSERT INTO `price` (`id`, `start_date`, `end_date`, `value`) VALUES (1, '2001-01-01', '2020-01-01', '53.21');
 INSERT INTO `price` (`id`, `start_date`, `end_date`, `value`) VALUES (2, '2001-01-01', '2020-01-01', '68.21');

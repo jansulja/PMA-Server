@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import com.tim11.pma.ftn.pmaprojekat.model.Hotel;
 import com.tim11.pma.ftn.pmaprojekat.repository.HotelRepository;
 import com.tim11.pma.ftn.pmaprojekat.service.HotelService;
-import com.tim11.pma.ftn.pmaprojekat.viewmodel.SearchViewModel;
+import com.tim11.pma.ftn.pmaprojekat.dto.SearchViewModel;
 
 @Service
 public class HotelServiceImpl implements HotelService {

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tim11.pma.ftn.pmaprojekat.firebase.service.FcmService;
 import com.tim11.pma.ftn.pmaprojekat.model.Hotel;
 import com.tim11.pma.ftn.pmaprojekat.service.HotelService;
-import com.tim11.pma.ftn.pmaprojekat.viewmodel.SearchViewModel;
+import com.tim11.pma.ftn.pmaprojekat.dto.SearchViewModel;
 
 @RestController
 @RequestMapping("hotel")
