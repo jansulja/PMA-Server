@@ -10,6 +10,6 @@ import com.tim11.pma.ftn.pmaprojekat.model.Reservation;
 @Repository
 public interface ReservationRepository extends JpaRepository<Reservation, Integer> {
 
-	public List<Reservation> findByEmail(String email);
+	public List<Reservation> findByUser(int id);
 	
 }

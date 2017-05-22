@@ -18,14 +18,14 @@ public class ReservationServiceImpl implements ReservationService {
 
 	@Override
 	public Reservation create(Reservation reservation) {
+		//TODO: Need to
 		return reservationRepository.save(reservation);
 		
 	}
 
 	@Override
-	public List<Reservation> getReservations(String email) {
-
-		return reservationRepository.findByEmail(email);
+	public List<Reservation> getReservations(int userId) {
+		return reservationRepository.findByUser(userId);
 	}
 	
 	

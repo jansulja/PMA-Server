@@ -31,7 +31,8 @@ public class Reservation implements Serializable {
    @JoinColumn(name = "room_id", referencedColumnName = "id")
    private Room room;
 
-   @ManyToOne
+   //TODO: Change to CascadeType.DETACH when user "registration" is implemented
+   @ManyToOne(cascade = CascadeType.ALL)
    @JoinColumn(name = "user_id", referencedColumnName = "id")
    private User user;
 

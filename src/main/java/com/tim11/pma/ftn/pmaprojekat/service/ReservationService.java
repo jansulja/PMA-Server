@@ -8,5 +8,5 @@ public interface ReservationService {
 
 	public Reservation create(Reservation reservation);
 
-	public List<Reservation> getReservations(String email);
+	public List<Reservation> getReservations(int userId);
 }

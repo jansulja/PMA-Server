@@ -29,10 +29,10 @@ public class ReservationController {
 		
 	}
 	
-	@RequestMapping(path = "/{email}", method = RequestMethod.GET)
-	public List<Reservation> getUserReservationList(@PathVariable String email){
+	@RequestMapping(path = "/{userId}", method = RequestMethod.GET)
+	public List<Reservation> getUserReservationList(@PathVariable int userId){
 		
-		List<Reservation> reservations = reservationService.getReservations(email);
+		List<Reservation> reservations = reservationService.getReservations(userId);
 		
 		return reservations;
 		

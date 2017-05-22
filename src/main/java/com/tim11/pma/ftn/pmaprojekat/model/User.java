@@ -34,7 +34,7 @@ public class User implements Serializable{
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "fb_user_id")
     private FBUser fbUser;
 
