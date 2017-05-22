@@ -7,484 +7,129 @@
 package com.tim11.pma.ftn.pmaprojekat.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-/** @pdOid 6596f8df-cea7-426e-8367-f83dd990cd84 */
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Room implements java.io.Serializable {
-   /** @pdOid b70d6aae-2848-43b6-a3a4-7c407705e784 */
-   private long roomId;
-   /** @pdOid 3628ffc5-58b6-438a-9637-fd14ebaf2dc8 */
-   private java.lang.String name;
-   /** @pdOid f40f84a6-0bd1-4cb4-9bad-6a26b5815396 */
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Set;
+
+@Entity
+@Table(name = "room")
+public class Room implements Serializable {
+
+   @Id
+   @GeneratedValue(strategy = GenerationType.AUTO)
+   private int id;
+
+   @Column(nullable = false)
+   private String name;
+
+   @Column(nullable = false)
    private int count;
-   /** @pdOid ef63af54-b986-4d91-8cbb-a2d2d60cdc20 */
+
+   @Column(nullable = false)
    private int available;
-   /** @pdOid 44b1a927-1409-4937-9764-7b80479b9b85 */
-   private java.lang.String description;
-   
-   /** @pdRoleInfo migr=no name=Bed assc=roomBed coll=java.util.Set impl=java.util.HashSet mult=0..* */
-   private java.util.Set<RoomBed> beds;
-   /** @pdRoleInfo migr=no name=Amenity assc=roomAmenity coll=java.util.Set impl=java.util.HashSet mult=0..* */
-   private java.util.Set<Amenity> RoomAmenity;
-   /** @pdRoleInfo migr=no name=Reservation assc=relationship6 coll=java.util.Set impl=java.util.HashSet mult=0..* */
-   private java.util.Set<Reservation> reservation;
-   /** @pdRoleInfo migr=no name=Hotel assc=relationship2 mult=1..1 side=A */
+
+   @Column
+   private String description;
+
+   @OneToMany(mappedBy = "room")
+   private Set<RoomBed> roomBeds;
+
+   @ManyToMany(mappedBy = "rooms")
+   private Set<Amenity> amenities;
+
+   @OneToMany(mappedBy = "room")
+   @JsonIgnore
+   private Set<Reservation> reservations;
+
+   @ManyToOne
+   @JoinColumn(name = "hotel_id", referencedColumnName = "id")
+   @JsonIgnore
    private Hotel hotel;
-   /** @pdRoleInfo migr=no name=Price assc=relationship3 mult=1..1 side=A */
+
+   @ManyToOne
+   @JoinColumn(name = "price_id", referencedColumnName = "id")
    private Price price;
-   
-   /**
-    * Empty constructor which is required by Hibernate
-    *
-    */
-   public Room() {
-      // TODO Auto-generated constructor stub
+
+   public Room() {}
+
+   public int getId() {
+      return id;
    }
-   
-   /**
-    * @pdGenerated default getter
-    */
-   public java.util.Set<RoomBed> getBeds() {
-      if (beds == null)
-         beds = new java.util.HashSet<RoomBed>();
-      return beds;
+
+   public void setId(int id) {
+      this.id = id;
    }
-   
-   /**
-    * @pdGenerated default iterator getter
-    */
-   @JsonIgnore
-   public java.util.Iterator getIteratorBeds() {
-      if (beds == null)
-         beds = new java.util.HashSet<RoomBed>();
-      return beds.iterator();
+
+   public String getName() {
+      return name;
    }
-   
-   /** 
-    * @pdGenerated default setter
-    * @param newBeds
-    */
-   public void setBeds(java.util.Set<RoomBed> newBeds) {
-      //removeAllBeds();
-      this.beds = newBeds;   
+
+   public void setName(String name) {
+      this.name = name;
    }
-   
-   /** 
-    * @pdGenerated default add
-    * @param newBed
-    */
-//   public void addBeds(RoomBed newBed) {
-//      if (newBed == null)
-//         return;
-//      if (this.beds == null)
-//         this.beds = new java.util.HashSet<RoomBed>();
-//      if (!this.beds.contains(newBed))
-//      {
-//         this.beds.add(newBed);
-//         newBed.addRooms(this);
-//      }
-//   }
-   
-   /** 
-    * @pdGenerated default remove
-    * @param oldBed
-    */
-   public void removeBeds(Bed oldBed) {
-      if (oldBed == null)
-         return;
-      if (this.beds != null)
-         if (this.beds.contains(oldBed))
-         {
-            this.beds.remove(oldBed);
-            oldBed.removeRooms(this);
-         }
+
+   public int getCount() {
+      return count;
    }
-   
-   /**
-    * @pdGenerated default removeAll
-    */
-   public void removeAllBeds() {
-      if (beds != null)
-      {
-         Bed oldBed;
-         for (java.util.Iterator iter = getIteratorBeds(); iter.hasNext();)
-         {
-            oldBed = (Bed)iter.next();
-            iter.remove();
-            oldBed.removeRooms(this);
-         }
-      }
+
+   public void setCount(int count) {
+      this.count = count;
    }
-   /**
-    * @pdGenerated default getter
-    */
-   public java.util.Set<Amenity> getRoomAmenity() {
-      if (RoomAmenity == null)
-         RoomAmenity = new java.util.HashSet<Amenity>();
-      return RoomAmenity;
+
+   public int getAvailable() {
+      return available;
    }
-   
-   /**
-    * @pdGenerated default iterator getter
-    */
-   @JsonIgnore
-   public java.util.Iterator getIteratorRoomAmenity() {
-      if (RoomAmenity == null)
-         RoomAmenity = new java.util.HashSet<Amenity>();
-      return RoomAmenity.iterator();
+
+   public void setAvailable(int available) {
+      this.available = available;
    }
-   
-   /** 
-    * @pdGenerated default setter
-    * @param newRoomAmenity
-    */
-   public void setRoomAmenity(java.util.Set<Amenity> newRoomAmenity) {
-      //removeAllRoomAmenity();
-      this.RoomAmenity = newRoomAmenity;   
+
+   public String getDescription() {
+      return description;
    }
-   
-   /** 
-    * @pdGenerated default add
-    * @param newAmenity
-    */
-   public void addRoomAmenity(Amenity newAmenity) {
-      if (newAmenity == null)
-         return;
-      if (this.RoomAmenity == null)
-         this.RoomAmenity = new java.util.HashSet<Amenity>();
-      if (!this.RoomAmenity.contains(newAmenity))
-      {
-         this.RoomAmenity.add(newAmenity);
-         newAmenity.addRoomAmenity(this);
-      }
+
+   public void setDescription(String description) {
+      this.description = description;
    }
-   
-   /** 
-    * @pdGenerated default remove
-    * @param oldAmenity
-    */
-   public void removeRoomAmenity(Amenity oldAmenity) {
-      if (oldAmenity == null)
-         return;
-      if (this.RoomAmenity != null)
-         if (this.RoomAmenity.contains(oldAmenity))
-         {
-            this.RoomAmenity.remove(oldAmenity);
-            oldAmenity.removeRoomAmenity(this);
-         }
+
+   public Set<RoomBed> getRoomBeds() {
+      return roomBeds;
    }
-   
-   /**
-    * @pdGenerated default removeAll
-    */
-   public void removeAllRoomAmenity() {
-      if (RoomAmenity != null)
-      {
-         Amenity oldAmenity;
-         for (java.util.Iterator iter = getIteratorRoomAmenity(); iter.hasNext();)
-         {
-            oldAmenity = (Amenity)iter.next();
-            iter.remove();
-            oldAmenity.removeRoomAmenity(this);
-         }
-      }
+
+   public void setRoomBeds(Set<RoomBed> roomBeds) {
+      this.roomBeds = roomBeds;
    }
-   /**
-    * @pdGenerated default getter
-    */
-   @JsonIgnore
-   public java.util.Set<Reservation> getReservation() {
-      if (reservation == null)
-         reservation = new java.util.HashSet<Reservation>();
-      return reservation;
+
+   public Set<Amenity> getAmenities() {
+      return amenities;
    }
-   
-   /**
-    * @pdGenerated default iterator getter
-    */
-   @JsonIgnore
-   public java.util.Iterator getIteratorReservation() {
-      if (reservation == null)
-         reservation = new java.util.HashSet<Reservation>();
-      return reservation.iterator();
+
+   public void setAmenities(Set<Amenity> amenities) {
+      this.amenities = amenities;
    }
-   
-   /** 
-    * @pdGenerated default setter
-    * @param newReservation
-    */
-   public void setReservation(java.util.Set<Reservation> newReservation) {
-      //removeAllReservation();
-      this.reservation = newReservation;   
+
+   public Set<Reservation> getReservations() {
+      return reservations;
    }
-   
-   /** 
-    * @pdGenerated default add
-    * @param newReservation
-    */
-   public void addReservation(Reservation newReservation) {
-      if (newReservation == null)
-         return;
-      if (this.reservation == null)
-         this.reservation = new java.util.HashSet<Reservation>();
-      if (!this.reservation.contains(newReservation))
-      {
-         this.reservation.add(newReservation);
-         newReservation.setRoom(this);
-      }
+
+   public void setReservations(Set<Reservation> reservations) {
+      this.reservations = reservations;
    }
-   
-   /** 
-    * @pdGenerated default remove
-    * @param oldReservation
-    */
-   public void removeReservation(Reservation oldReservation) {
-      if (oldReservation == null)
-         return;
-      if (this.reservation != null)
-         if (this.reservation.contains(oldReservation))
-         {
-            this.reservation.remove(oldReservation);
-            oldReservation.setRoom((Room)null);
-         }
-   }
-   
-   /**
-    * @pdGenerated default removeAll
-    */
-   public void removeAllReservation() {
-      if (reservation != null)
-      {
-         Reservation oldReservation;
-         for (java.util.Iterator iter = getIteratorReservation(); iter.hasNext();)
-         {
-            oldReservation = (Reservation)iter.next();
-            iter.remove();
-            oldReservation.setRoom((Room)null);
-         }
-      }
-   }
-   /**
-    * @pdGenerated default parent getter
-    */
-   @JsonIgnore
+
    public Hotel getHotel() {
       return hotel;
    }
-   
-   /**
-    * @pdGenerated default parent setter
-    * @param newHotel
-    */
-   public void setHotel(Hotel newHotel) {
-      if (this.hotel == null || !this.hotel.equals(newHotel))
-      {
-         if (this.hotel != null)
-         {
-            Hotel oldHotel = this.hotel;
-            this.hotel = null;
-            //oldHotel.removeRoom(this);
-         }
-         if (newHotel != null)
-         {
-            this.hotel = newHotel;
-            //this.hotel.addRoom(this);
-         }
-      }
+
+   public void setHotel(Hotel hotel) {
+      this.hotel = hotel;
    }
-   /**
-    * @pdGenerated default parent getter
-    */
+
    public Price getPrice() {
       return price;
    }
-   
-   /**
-    * @pdGenerated default parent setter
-    * @param newPrice
-    */
-   public void setPrice(Price newPrice) {
-      if (this.price == null || !this.price.equals(newPrice))
-      {
-         if (this.price != null)
-         {
-            Price oldPrice = this.price;
-            this.price = null;
-            //oldPrice.removeRoom(this);
-         }
-         if (newPrice != null)
-         {
-            this.price = newPrice;
-            //this.price.addRoom(this);
-         }
-      }
-   }
-   
-   /**
-    * Get value of roomId
-    *
-    * @return roomId 
-    */
-   public long getRoomId()
-   {
-      return roomId;
-   }
-   
-   /**
-    * Set value of roomId
-    *
-    * @param newRoomId 
-    */
-   public void setRoomId(long newRoomId)
-   {
-      this.roomId = newRoomId;
-   }
-   
-   /**
-    * Get value of name
-    *
-    * @return name 
-    */
-   public java.lang.String getName()
-   {
-      return name;
-   }
-   
-   /**
-    * Set value of name
-    *
-    * @param newName 
-    */
-   public void setName(java.lang.String newName)
-   {
-      this.name = newName;
-   }
-   
-   /**
-    * Get value of count
-    *
-    * @return count 
-    */
-   public int getCount()
-   {
-      return count;
-   }
-   
-   /**
-    * Set value of count
-    *
-    * @param newCount 
-    */
-   public void setCount(int newCount)
-   {
-      this.count = newCount;
-   }
-   
-   /**
-    * Get value of available
-    *
-    * @return available 
-    */
-   public int getAvailable()
-   {
-      return available;
-   }
-   
-   /**
-    * Set value of available
-    *
-    * @param newAvailable 
-    */
-   public void setAvailable(int newAvailable)
-   {
-      this.available = newAvailable;
-   }
-   
-   /**
-    * Get value of description
-    *
-    * @return description 
-    */
-   public java.lang.String getDescription()
-   {
-      return description;
-   }
-   
-   /**
-    * Set value of description
-    *
-    * @param newDescription 
-    */
-   public void setDescription(java.lang.String newDescription)
-   {
-      this.description = newDescription;
-   }
-   
 
-   
-   /* (non-Javadoc)
-    * @see java.lang.Object#equals(java.lang.Object)
-    */
-   public boolean equals(Object other) {
-   
-      if (other == null)
-         return false;
-      
-      if (other == this)
-         return true;   
-   
-      if (!(other instanceof Room))
-         return false;
-   
-      Room cast = (Room) other;
-   
-      if (this.roomId != cast.getRoomId())
-         return false;
-   
-      if (this.name == null ? cast.getName() != this.name : !this.name.equals( cast.getName()))
-         return false;
-   
-      if (this.count != cast.getCount())
-         return false;
-   
-      if (this.available != cast.getAvailable())
-         return false;
-   
-      if (this.description == null ? cast.getDescription() != this.description : !this.description.equals( cast.getDescription()))
-         return false;
-   
-      return true;
+   public void setPrice(Price price) {
+      this.price = price;
    }
-   
-   /* (non-Javadoc)
-    * @see java.lang.Object#hashCode()
-    */
-   public int hashCode() {
-      int hashCode = 0;
-      hashCode = 29 * hashCode + (new Long(roomId)).hashCode();
-      if (this.name != null) 
-         hashCode = 29 * hashCode + name.hashCode();
-      hashCode = 29 * hashCode + (new Integer(count)).hashCode();
-      hashCode = 29 * hashCode + (new Integer(available)).hashCode();
-      if (this.description != null) 
-         hashCode = 29 * hashCode + description.hashCode();
-      return hashCode;
-   }
-   
-   /* (non-Javadoc)
-    * @see java.lang.Object#toString()
-    */
-   public String toString()
-   {
-      StringBuffer ret = new StringBuffer();
-      ret.append( "com.tim11.pma.ftn.pmaprojekat.model.Room: " );
-      ret.append( "roomId='" + roomId + "'");
-      ret.append( "name='" + name + "'");
-      ret.append( "count='" + count + "'");
-      ret.append( "available='" + available + "'");
-      ret.append( "description='" + description + "'");
-      return ret.toString();
-   }
-
 }

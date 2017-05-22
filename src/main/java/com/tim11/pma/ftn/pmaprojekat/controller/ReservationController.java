@@ -29,10 +29,10 @@ public class ReservationController {
 		
 	}
 	
-	@RequestMapping(path = "/{email}", method = RequestMethod.GET)
-	public List<Reservation> getUserReservationList(@PathVariable String email){
+	@RequestMapping(path = "/{fbProfileId}", method = RequestMethod.GET)
+	public List<Reservation> getUserReservationList(@PathVariable String fbProfileId){
 		
-		List<Reservation> reservations = reservationService.getReservations(email);
+		List<Reservation> reservations = reservationService.getReservationsForFbProfile(fbProfileId);
 		
 		return reservations;
 		

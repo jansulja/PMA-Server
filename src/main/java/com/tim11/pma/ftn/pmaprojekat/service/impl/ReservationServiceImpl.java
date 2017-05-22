@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.tim11.pma.ftn.pmaprojekat.model.Hotel;
 import com.tim11.pma.ftn.pmaprojekat.model.Reservation;
 import com.tim11.pma.ftn.pmaprojekat.repository.ReservationRepository;
 import com.tim11.pma.ftn.pmaprojekat.service.ReservationService;
@@ -18,15 +17,18 @@ public class ReservationServiceImpl implements ReservationService {
 
 	@Override
 	public Reservation create(Reservation reservation) {
+		//TODO: Need to
 		return reservationRepository.save(reservation);
 		
 	}
 
 	@Override
-	public List<Reservation> getReservations(String email) {
-
-		return reservationRepository.findByEmail(email);
+	public List<Reservation> getReservationsForUser(int userId) {
+		return reservationRepository.findByUserId(userId);
 	}
-	
-	
+
+	@Override
+	public List<Reservation> getReservationsForFbProfile(String fbProfileId) {
+		return reservationRepository.findByUser_fbUser_fbProfileId(fbProfileId);
+	}
 }

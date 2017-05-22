@@ -60,7 +60,9 @@ public class HotelServiceImpl implements HotelService {
 
 	private Query generateSearchQuery(SearchViewModel searchViewModel) {
 		
-		String query = "select distinct h from Hotel h join h.room r join r.price p where h.stars in :stars and h.rating >= :minRating and p.value <= :maxRoomPrice ";
+		String query = "select distinct h " +
+				"from Hotel h join h.rooms r join r.price p " +
+				"where h.stars in :stars and h.rating >= :minRating and p.value <= :maxRoomPrice ";
 		
 		if(searchViewModel.getHotelName() != null && !searchViewModel.getHotelName().trim().isEmpty()){
 			query += "and LOWER(h.name) like :hotelName ";
@@ -73,7 +75,10 @@ public class HotelServiceImpl implements HotelService {
 		.setParameter("maxRoomPrice", searchViewModel.getMaxRoomPrice());
 		
 		Set<Parameter<?>> params = q.getParameters();
-		params.forEach(p-> {  if(p.getName().equals("hotelName")) q.setParameter("hotelName", "%"+searchViewModel.getHotelName().toLowerCase()+"%");  });
+		params.forEach(p -> {
+			if(p.getName().equals("hotelName"))
+				q.setParameter("hotelName", "%"+searchViewModel.getHotelName().toLowerCase()+"%");
+		});
 		
 		return q;
 	}
