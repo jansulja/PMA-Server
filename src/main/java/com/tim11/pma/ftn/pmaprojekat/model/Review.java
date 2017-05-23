@@ -19,15 +19,20 @@ public class Review implements Serializable{
     @Column(nullable = false)
     private double rating;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @JsonIgnore
     private User user;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "hotel_id", referencedColumnName = "id")
     @JsonIgnore
     private Hotel hotel;
+
+    @OneToOne(optional = false)
+    @JoinColumn(name = "reservation_id", referencedColumnName = "id")
+    @JsonIgnore
+    private Reservation reservation;
 
     public Review() {}
 
@@ -69,5 +74,13 @@ public class Review implements Serializable{
 
     public void setHotel(Hotel hotel) {
         this.hotel = hotel;
+    }
+
+    public Reservation getReservation() {
+        return reservation;
+    }
+
+    public void setReservation(Reservation reservation) {
+        this.reservation = reservation;
     }
 }

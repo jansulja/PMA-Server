@@ -31,10 +31,12 @@ public class Reservation implements Serializable {
    @JoinColumn(name = "room_id", referencedColumnName = "id")
    private Room room;
 
-   //TODO: Change to CascadeType.DETACH when user "registration" is implemented
-   @ManyToOne(cascade = CascadeType.ALL)
+   @ManyToOne
    @JoinColumn(name = "user_id", referencedColumnName = "id")
    private User user;
+
+   @OneToOne(mappedBy = "reservation")
+   private Review review;
 
    public Reservation() {}
 
@@ -84,5 +86,13 @@ public class Reservation implements Serializable {
 
    public void setUser(User user) {
       this.user = user;
+   }
+
+   public Review getReview() {
+      return review;
+   }
+
+   public void setReview(Review review) {
+      this.review = review;
    }
 }
