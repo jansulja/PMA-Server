@@ -1,5 +1,6 @@
 package com.tim11.pma.ftn.pmaprojekat.service.impl;
 
+import com.tim11.pma.ftn.pmaprojekat.model.FBUser;
 import com.tim11.pma.ftn.pmaprojekat.model.User;
 import com.tim11.pma.ftn.pmaprojekat.repository.UserRepository;
 import com.tim11.pma.ftn.pmaprojekat.service.UserService;
