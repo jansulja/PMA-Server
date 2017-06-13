@@ -41,7 +41,15 @@ public class SearchViewModel {
 
 	public void setStars(List<Integer> stars) {
 		this.stars = stars;
-	} 
-	
-	
+	}
+
+	@Override
+	public String toString() {
+		return "SearchViewModel{" +
+				"stars=" + stars +
+				", minRating=" + minRating +
+				", maxRoomPrice=" + maxRoomPrice +
+				", hotelName='" + hotelName + '\'' +
+				'}';
+	}
 }

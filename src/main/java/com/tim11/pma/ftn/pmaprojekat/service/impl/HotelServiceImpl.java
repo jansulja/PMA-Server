@@ -1,5 +1,6 @@
 package com.tim11.pma.ftn.pmaprojekat.service.impl;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -27,27 +28,29 @@ public class HotelServiceImpl implements HotelService {
 	
 	@Override
 	public List<Hotel> findAll() {
-		// TODO Auto-generated method stub
-		List<Hotel> list = hotelRepository.findAll();
-		return list;
+		return hotelRepository.findAll();
+	}
+
+	@Override
+	public List<Hotel> findAllByIds(Integer... ids) {
+		return hotelRepository.findAll(Arrays.asList(ids));
 	}
 
 	@Override
 	public void save(Hotel category) {
-		// TODO Auto-generated method stub
-
+		throw new RuntimeException("Not implemented");
 	}
 
 	@Override
 	public void update(Hotel category) {
 		// TODO Auto-generated method stub
-
+		throw new RuntimeException("Not implemented");
 	}
 
 	@Override
 	public void remove(Hotel categoryId) {
 		// TODO Auto-generated method stub
-
+		throw new RuntimeException("Not implemented");
 	}
 
 	@Override
@@ -55,7 +58,6 @@ public class HotelServiceImpl implements HotelService {
 
 		List<Hotel> results =generateSearchQuery(searchViewModel).getResultList();
 		return results;
-		
 	}
 
 	private Query generateSearchQuery(SearchViewModel searchViewModel) {

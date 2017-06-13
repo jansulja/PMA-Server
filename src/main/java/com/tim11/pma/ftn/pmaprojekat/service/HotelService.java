@@ -9,6 +9,8 @@ public interface HotelService {
 
 	public List<Hotel> findAll();
 
+	public List<Hotel> findAllByIds(Integer... ids);
+
 	public void save(Hotel hotel);
 
 	public void update(Hotel hotel);
