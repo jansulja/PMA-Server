@@ -48,4 +48,23 @@ public class FcmService {
 	    }
 	  }
 	
+	public void sendPushMessage(String title, String body, String topicName, Map<String, Object> data, String tag) {
+	    FcmMessageOptions options = FcmMessageOptions.builder()
+	        .setTimeToLive(Duration.ofMinutes(10)).build();
+
+	    NotificationPayload payload = NotificationPayload.builder()
+	        .setBody(body).setTitle(title)
+	        .setTag(tag).setSound("default").build();
+
+
+	    Topic topic = new Topic(topicName);
+	    TopicUnicastMessage message = new TopicUnicastMessage(options, topic, data, payload);
+
+	    TopicMessageResponse response = this.fcmClient.send(message);
+	    ErrorCodeEnum errorCode = response.getErrorCode();
+	    if (errorCode != null) {
+	      System.out.println("Topic message sending failed: " + errorCode);
+	    }
+	  }
+	
 }

@@ -12,16 +12,21 @@ import javax.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.tim11.pma.ftn.pmaprojekat.model.Hotel;
-import com.tim11.pma.ftn.pmaprojekat.repository.HotelRepository;
-import com.tim11.pma.ftn.pmaprojekat.service.HotelService;
 import com.tim11.pma.ftn.pmaprojekat.dto.SearchViewModel;
+import com.tim11.pma.ftn.pmaprojekat.model.Hotel;
+import com.tim11.pma.ftn.pmaprojekat.model.Room;
+import com.tim11.pma.ftn.pmaprojekat.repository.HotelRepository;
+import com.tim11.pma.ftn.pmaprojekat.repository.RoomRepository;
+import com.tim11.pma.ftn.pmaprojekat.service.HotelService;
 
 @Service
 public class HotelServiceImpl implements HotelService {
 
 	@Autowired
 	private HotelRepository hotelRepository;
+	
+	@Autowired
+	private RoomRepository roomRepository;
 	
 	@PersistenceContext
 	private EntityManager entityManager;
@@ -83,6 +88,17 @@ public class HotelServiceImpl implements HotelService {
 		});
 		
 		return q;
+	}
+
+	@Override
+	public Hotel addRoomToHotel(int hotelId, Room r) {
+
+		Hotel h = hotelRepository.findOne(hotelId);
+		h.getRooms().add(r);
+		r.setHotel(h);
+		roomRepository.save(r);
+		return h;
+		
 	}
 
 }
