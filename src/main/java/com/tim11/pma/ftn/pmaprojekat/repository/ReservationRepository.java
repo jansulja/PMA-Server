@@ -13,5 +13,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
 	public List<Reservation> findByUserId(int id);
 
 	public List<Reservation> findByUser_fbUser_fbProfileId(String id);
+	
+	public List<Reservation> findByRoomId(int id);
 
 }

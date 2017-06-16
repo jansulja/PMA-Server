@@ -1,6 +1,9 @@
 package com.tim11.pma.ftn.pmaprojekat.service.impl;
 
+import static org.mockito.Matchers.booleanThat;
+
 import java.util.List;
+
 
 import com.tim11.pma.ftn.pmaprojekat.model.User;
 import com.tim11.pma.ftn.pmaprojekat.service.UserService;
@@ -29,7 +32,30 @@ public class ReservationServiceImpl implements ReservationService {
 		} else {
 			reservation.setUser(user);
 		}
+		
+		if(!checkForAvailability(reservation)){
+			return null;
+		}
+		
 		return reservationRepository.save(reservation);
+	}
+
+	private boolean checkForAvailability(Reservation reservation) {
+
+		int count = 0;
+		List<Reservation> reservations = reservationRepository.findByRoomId(reservation.getRoom().getId());
+		
+		for(Reservation r:reservations){
+			if((reservation.getStartDate().after(r.getStartDate()) && reservation.getStartDate().before(r.getEndDate())) || 
+			   (reservation.getEndDate().after(r.getStartDate()) && reservation.getEndDate().before(r.getEndDate()))	
+			){
+				count++;
+			}
+		}
+		
+		return (count >= reservation.getRoom().getCount()) ? false : true;
+		
+		
 	}
 
 	@Override
@@ -41,4 +67,6 @@ public class ReservationServiceImpl implements ReservationService {
 	public List<Reservation> getReservationsForFbProfile(String fbProfileId) {
 		return reservationRepository.findByUser_fbUser_fbProfileId(fbProfileId);
 	}
+
+
 }

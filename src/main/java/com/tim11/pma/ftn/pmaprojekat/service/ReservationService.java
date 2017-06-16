@@ -11,4 +11,5 @@ public interface ReservationService {
 	List<Reservation> getReservationsForUser(int userId);
 
 	List<Reservation> getReservationsForFbProfile(String id);
+	
 }
