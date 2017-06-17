@@ -34,6 +34,14 @@ public class ReviewServiceImpl implements ReviewService {
 			Review newReview = reviewRepository.save(review);
 			Hotel hotel = newReview.getHotel();
 			hotel.setNumberOfReviews(hotel.getNumberOfReviews() + 1);
+			
+			double sum = 0;
+			for(Review r :hotel.getReviews()){
+				sum+=r.getRating();
+			}
+			
+			hotel.setRating(sum/hotel.getNumberOfReviews());
+			
 			hotelRepository.save(hotel);
 			return newReview;
 		}
