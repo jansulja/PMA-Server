@@ -1,7 +1,5 @@
 package com.tim11.pma.ftn.pmaprojekat.service.impl;
 
-import static org.mockito.Matchers.booleanThat;
-
 import java.util.List;
 
 
